@@ -4,7 +4,12 @@ To run the application and the database we require Docker. I have created a Make
 make start
 ```
 
-Once the application start, we can interact with the server through port `9876` of our localhost.  
+Once the application start, we can interact with the server through port `9876` of our localhost.    
+
+Use this command to stop the application and database server:
+```
+make stop
+```
 
 ## List of API
 This service currently serve these usecase:
