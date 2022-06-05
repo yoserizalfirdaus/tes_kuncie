@@ -1,0 +1,27 @@
+type Mutation {
+    addToCart(transaction_id: String!, product_sku: String!, qty: Int!): Cart!
+}
+
+type Cart {
+    transaction_id: String!
+    transaction_time: String!
+    items: [CartItem]
+    promos: [CartPromo]
+    subtotal: Float!
+    discount: Float!
+    total_amount: Float!
+}
+
+type CartItem {
+    sku: String!
+    name: String!
+    qty: Int!
+    price: Float!
+    total_price: Float!
+}
+
+type CartPromo {
+    id: Int!
+    name: String!
+    total_amount: Float!
+}

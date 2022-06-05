@@ -1,0 +1,25 @@
+version: "3.1"
+services:
+  myapp:
+    build: .
+    ports:
+      - "9876:9876"
+    depends_on:
+      postgres:
+        condition: service_healthy
+  
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydb
+      POSTGRES_USER: myuser
+    ports:
+      - 5432:5432
+    volumes:
+      - ./sqlfiles:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
