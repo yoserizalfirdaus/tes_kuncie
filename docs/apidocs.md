@@ -4,17 +4,18 @@ Host: http://localhost:9876
 
 ### Add to cart
 
-Add item to the cart with specific transaction id. If cart with the transaction id is not exist, it will create a new cart. Promotion will be applied if the products in cart meet promo requirements.
+Add item to the cart with specific transaction id. If cart with the transaction id is not exist, it will create a new cart. Promotion will be applied if the products in cart meet promo requirements.  
 
-URL: http://localhost:9876/cart/add-to-cart
-Method: POST
-Content-Type: application/json
-Request body:
+URL: http://localhost:9876/cart/add-to-cart  
+Method: POST  
+Content-Type: application/json  
+Request body:  
 | field          | data type   | description |
 | -------------- | ----------- | ----------- |
 | transaction_id | string      | transaction id of the cart. Must be unique for each cart |
 | product_sku    | string      | sku of the product          |
 | qty            | int         | qty of the product          |
+
 Request body sample:
 ```
 {
@@ -23,6 +24,7 @@ Request body sample:
     "qty": 1
 }
 ```
+
 Response body:
 | field          | data type   | description |
 | -------------- | ----------- | ----------- |
@@ -44,6 +46,7 @@ Response body:
 | subtotal | float      | subtotal of the cart |
 | discount | float      | total discount of the cart |
 | total_amount | float      | total amount of the cart |
+
 Response body sample:
 ```
 {
@@ -77,16 +80,17 @@ Response body sample:
 
 ### Checkout
 
-Checkout and pay the cart. Require transaction id of the cart and payment method.
+Checkout and pay the cart. Require transaction id of the cart and payment method.  
 
-URL: http://localhost:9876/cart/checkout
-Method: POST
-Content-Type: application/json
-Request body:
+URL: http://localhost:9876/cart/checkout  
+Method: POST  
+Content-Type: application/json  
+Request body:  
 | field          | data type   | description |
 | -------------- | ----------- | ----------- |
 | transaction_id | string      | transaction id of the cart |
 | payment_method | string      | method to pay the transaction |
+
 Request body sample:
 ```
 {
@@ -95,11 +99,13 @@ Request body sample:
     "qty": 1
 }
 ```
+
 Response body:
 | field          | data type   | description |
 | -------------- | ----------- | ----------- |
 | status | string      | `success` or `failed` |
 | message | string      | message that explain the status |
+
 Response body sample:
 ```
 {
