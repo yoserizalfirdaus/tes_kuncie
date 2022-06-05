@@ -8,9 +8,9 @@ Once the application start, we can interact with the server through port `9876` 
 
 ## List of API
 This service currently serve these usecase:
-- Add to Cart
+- Add to Cart:
 Add item to the cart with provided transaction id. Promotion will be evaluated and applied for the eligible products.
-- Checkout
+- Checkout:
 Checkout the cart with transaction id using a given payment method.
 
 See [here](docs/apidocs.md) for the complete API docs.
