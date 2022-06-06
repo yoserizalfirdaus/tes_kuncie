@@ -21,7 +21,7 @@ Checkout the cart with transaction id using a given payment method.
 See [here](docs/apidocs.md) for the complete API docs.
 
 ## Code Architecture
-The code is written using Clean Code Architecture. This application is separated into 4 main layers. The layers in order from outside to inside are infrastructure, interface adapter, usecase, entity. The dependency go from outward to inside, means that a layer can import inner layer, but must not import outside layer. 
+The code is written using Clean Code Architecture. This application is separated into 4 main layers. The layers in order from outside to inside are infrastructure, interface adapter, usecase, entity. The dependency go from outside to inside, means that a layer can import inner layer, but must not import outside layer. 
 
 ## Database
 Currently there 4 tables. The product table store product data. The promotion table store promotion data, with the product requirement for the promo stored in table product_promo_requirement. And the outcome of the promo stored in table promo_outcome.  
@@ -39,7 +39,9 @@ In product_promo_requirement:
 And in the promo_outcome:
 | promo_id    | product_sku | promotion_type | amount      | qty         |
 | ----------- | ----------- | -------------- | ----------- | ----------- |
-| 1           | 43N23P      | percentage     | 100         | 1           |
+| 1           | 234234      | percentage     | 100         | 1           |
+
+This means we give 100% discount on product 234234.
 
 ## GraphQL
 To use graphql to interact with the service, we need to create another service that handle graphql request. The service then will forward the request to the checkout service based on the query or mutation. Then graphql server will return the response back to the client. The schema for the service can be seen [here](docs/schema.graphql).

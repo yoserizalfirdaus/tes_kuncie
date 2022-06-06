@@ -95,8 +95,7 @@ Request body sample:
 ```
 {
     "transaction_id": "abc123",
-    "product_sku": "A304SD",
-    "qty": 1
+    "payment_method": "cash"
 }
 ```
 
