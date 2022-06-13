@@ -1,6 +1,7 @@
 start: test run
 
 test: 
+	go mod vendor
 	go test ./...
 
 run: 
