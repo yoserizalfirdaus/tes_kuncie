@@ -48,6 +48,9 @@ func NewCheckoutUsecase(promoRepo PromoRepository, productRepo ProductRepository
 	}
 }
 
+// AddToCart add item to a cart with specified transaction id.
+// Evaluate aplicable promotion with items in cart.
+// Returns updated cart data.
 func (u CheckoutUsecase) AddToCart(input AddToCartInput) (*entity.Cart, error) {
 	if err := input.IsValid(); err != nil {
 		return nil, err
@@ -88,6 +91,8 @@ func (u CheckoutUsecase) AddToCart(input AddToCartInput) (*entity.Cart, error) {
 	return cart, nil
 }
 
+// evaluateProductPromo get available promo for given productSku.
+// Will update cart aplicable promo.
 func (u *CheckoutUsecase) evaluateProductPromo(cart *entity.Cart, productSku string) error {
 	promo, err := u.promoRepo.GetPromoByProductSku(productSku)
 	if err != nil {
@@ -135,6 +140,7 @@ func (u *CheckoutUsecase) evaluateProductPromo(cart *entity.Cart, productSku str
 	return nil
 }
 
+// applyPromoToCart apply aplicable promo to items in the cart
 func (u *CheckoutUsecase) applyPromoToCart(cart *entity.Cart) {
 	for _, promo := range cart.ApplicablePromo {
 		ci := cart.Items[promo.ProductSku]
@@ -162,6 +168,8 @@ func (u *CheckoutUsecase) applyPromoToCart(cart *entity.Cart) {
 	}
 }
 
+// Checkout the cart with specified payment method.
+// Will clear cart that has given transaction id.
 func (u CheckoutUsecase) Checkout(input CheckoutInput) error {
 	if err := input.IsValid(); err != nil {
 		return err
